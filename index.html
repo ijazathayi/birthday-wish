@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a052e">
+<title>A Birthday Wish For You 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ff6b9d;--deep-pink:#e91e63;
+  --purple-1:#1a052e;--purple-2:#4a0e5c;
+  --glass:rgba(255,255,255,.08);--glass-border:rgba(255,255,255,.25);
+  --text:#ffeef5;
+  --card-pad:clamp(26px,6vw,44px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{height:100%}
+body{
+  font-family:'Poppins',system-ui,sans-serif;color:var(--text);
+  background:linear-gradient(135deg,var(--purple-1) 0%,#2b0a45 40%,var(--purple-2) 70%,#12001f 100%);
+  background-attachment:fixed;
+  overflow-x:hidden;
+  min-height:100vh;min-height:100svh;
+}
+#hearts-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.heart{position:absolute;bottom:-60px;font-size:1.4rem;opacity:.55;animation:riseUp linear forwards;will-change:transform,opacity}
+@keyframes riseUp{0%{transform:translateY(0) rotate(0) scale(.7);opacity:0}10%{opacity:.7}90%{opacity:.4}100%{transform:translateY(-115svh) rotate(320deg) scale(1.15);opacity:0}}
+
+.screen{
+  position:relative;z-index:1;display:none;
+  min-height:100vh;min-height:100svh;
+  align-items:center;justify-content:center;
+  padding:calc(16px + env(safe-area-inset-top)) calc(14px + env(safe-area-inset-right))
+          calc(20px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left));
+}
+.screen.active{display:flex;animation:screenIn .8s ease both}
+@keyframes screenIn{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:none}}
+
+.card{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:clamp(20px,5vw,28px);
+  padding:var(--card-pad);
+  max-width:600px;width:100%;
+  text-align:center;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
+  display:flex;flex-direction:column;align-items:center;gap:22px;
+}
+
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(1.9rem,7vw,3.2rem);
+  font-weight:400;color:#ffb3cd;line-height:1.2;
+}
+.hidden{display:none!important}
+.envelope-top{font-size:clamp(2.4rem,8vw,3rem)}
+
+.btn-romantic{
+  font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;color:#fff;
+  background:linear-gradient(135deg,var(--deep-pink),var(--pink));
+  border:none;padding:15px 34px;min-height:48px;min-width:44px;
+  border-radius:999px;cursor:pointer;transition:all .3s ease;
+  box-shadow:0 10px 30px rgba(233,30,99,.45);
+  -webkit-tap-highlight-color:transparent;
+}
+@media (hover:hover){
+  .btn-romantic:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 40px rgba(233,30,99,.6)}
+}
+.btn-romantic:active{transform:scale(.97)}
+
+.letter-paper{
+  background:linear-gradient(160deg,#fff8f0,#ffeef1);
+  border-radius:clamp(14px,3.5vw,18px);
+  padding:clamp(20px,5vw,30px) clamp(18px,5vw,28px);
+  color:#4a2140;text-align:left;
+  font-family:'Quicksand',sans-serif;
+  font-size:clamp(1rem,4vw,1.12rem);font-weight:500;
+  line-height:1.95;width:100%;
+  box-shadow:inset 0 0 40px rgba(233,30,99,.08);
+  white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;
+  overflow-y:auto;
+  max-height:60vh;
+}
+.signature{text-align:right;margin-top:14px;font-weight:600;color:#c2185b;font-family:'Quicksand',sans-serif;font-size:clamp(.95rem,3.5vw,1.05rem)}
+.caret::after{content:'❤';margin-left:3px;animation:blink .9s infinite;color:var(--deep-pink)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+#btn-finish{margin-top:4px}
+
+.finale-content{
+  position:relative;z-index:1;text-align:center;padding:20px;
+  display:flex;flex-direction:column;align-items:center;
+  min-height:100svh;justify-content:center;
+}
+.finale-title{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2.3rem,9vw,4.2rem);font-weight:400;color:#ffc8dd;
+  text-shadow:0 0 30px rgba(255,107,157,.65);
+  animation:finaleGlow 2.6s ease-in-out infinite;
+}
+@keyframes finaleGlow{0%,100%{text-shadow:0 0 30px rgba(255,107,157,.65)}50%{text-shadow:0 0 60px rgba(255,107,157,1)}}
+.finale-sub{margin-top:18px;font-weight:300;font-size:clamp(.98rem,3.5vw,1.05rem);color:#f3cfe0;line-height:1.9;padding:0 8px}
+.finale-hearts{margin-top:24px;font-size:clamp(1.3rem,5vw,1.7rem);letter-spacing:clamp(6px,2.5vw,14px);animation:heartsBeat 1.4s ease-in-out infinite}
+@keyframes heartsBeat{0%,100%{transform:scale(1)}30%{transform:scale(1.18)}60%{transform:scale(1.05)}}
+.btn-ghost{
+  margin-top:26px;background:transparent;color:var(--pink);
+  border:1px solid var(--pink);padding:12px 28px;min-height:44px;
+  border-radius:999px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;
+  transition:all .3s ease;-webkit-tap-highlight-color:transparent;
+}
+@media (hover:hover){
+  .btn-ghost:hover{background:rgba(255,107,157,.15);transform:translateY(-2px)}
+}
+
+/* Phones in landscape: keep card compact so buttons stay visible */
+@media (max-height:520px) and (orientation:landscape){
+  .letter-paper{max-height:42vh}
+  .card{gap:14px}
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion:reduce){
+  .heart,.finale-hearts,.finale-title{animation:none}
+  .screen.active{animation:none}
+}
+
+/* Laptops &	up: a touch more breathing room */
+@media (min-width:1024px){
+  .screen{padding:40px 24px}
+  .card{gap:28px}
+}
+</style>
+</head>
+<body>
+
+<div id="hearts-bg" aria-hidden="true"></div>
+
+<!-- LETTER SCREEN — shows immediately when she opens the link -->
+<section id="screen-letter" class="screen active">
+  <div class="card">
+    <div class="envelope-top">💌</div>
+    <h1 id="letter-title">A Birthday Wish For You</h1>
+
+    <div class="letter-paper">
+      <p id="typed-letter"></p>
+      <p id="letter-signature" class="signature hidden">— With warm wishes 🎁</p>
+    </div>
+
+    <button id="btn-finish" class="btn-romantic hidden">One last surprise… 🎁</button>
+  </div>
+</section>
+
+<!-- FINALE -->
+<section id="screen-finale" class="screen">
+  <div class="finale-content">
+    <h1 id="finale-title" class="finale-title">Happy Birthday 🎂</h1>
+    <p class="finale-sub">May this year surprise you with beautiful moments,<br>good health and all the happiness you deserve. ✨</p>
+    <div class="finale-hearts">🎉 🌸 ✨ 🎁 🍰 🎈</div>
+    <button id="btn-replay" class="btn-ghost">↻ Read it again</button>
+  </div>
+</section>
+
+<script>
+(function(){
+'use strict';
+var $ = function(id){ return document.getElementById(id); };
+
+/* ---------- Floating hearts (paused when battery saver prefers fewer animations) ---------- */
+var bg = $('hearts-bg');
+var glyphs = ['💖','💗','💓','💞','💕','❤️','🌸'];
+var reduceMotion = false;
+try { reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+if (!reduceMotion) {
+  setInterval(function(){
+    var h = document.createElement('div');
+    h.className = 'heart';
+    h.textContent = glyphs[Math.floor(Math.random()*glyphs.length)];
+    h.style.left = Math.random()*100 + '%';
+    h.style.animationDuration = 6 + Math.random()*6 + 's';
+    h.style.fontSize = 1 + Math.random()*1.4 + 'rem';
+    bg.appendChild(h);
+    setTimeout(function(){ h.remove(); }, 13000);
+  }, 650);
+}
+
+/* ---------- Screen system ---------- */
+function showScreen(id){
+  var all = document.querySelectorAll('.screen');
+  for (var i=0;i<all.length;i++) all[i].classList.remove('active');
+  $(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ---------- Letter text (embedded — same for everyone who opens the link) ---------- */
+var LETTER =
+  "Happy Birthday 🎂\n\n" +
+  "Wishing you a day as wonderful as the happiness you bring to " +
+  "everyone around you. May this new year of your life be filled with " +
+  "laughter, good health, and everything you've been hoping for.\n\n" +
+  "Enjoy your special day — you deserve it! ✨";
+
+var HER_NAME = '';
+try { HER_NAME = localStorage.getItem('birthday_her_name') || ''; } catch(e){}
+
+if (HER_NAME) {
+  $('letter-title').textContent = 'A Birthday Wish For ' + HER_NAME;
+  $('finale-title').textContent = 'Happy Birthday, ' + HER_NAME + ' 🎂';
+}
+
+/* ---------- Typewriter (starts immediately) ---------- */
+var lines = [], lineIndex = 0, charIndex = 0, typeTimer = null;
+
+function startTypewriter(){
+  clearTimeout(typeTimer);
+  lines = LETTER.split(/\n+/).filter(function(l){ return l.trim().length; });
+  lineIndex = 0; charIndex = 0;
+  $('typed-letter').textContent = '';
+  $('typed-letter').classList.add('caret');
+  $('letter-signature').classList.add('hidden');
+  $('btn-finish').classList.add('hidden');
+  typeNext();
+}
+
+function typeNext(){
+  if (lineIndex >= lines.length){
+    $('typed-letter').classList.remove('caret');
+    $('letter-signature').classList.remove('hidden');
+    $('btn-finish').classList.remove('hidden');
+    return;
+  }
+  var line = lines[lineIndex];
+  if (charIndex < line.length){
+    $('typed-letter').textContent += line[charIndex++];
+    typeTimer = setTimeout(typeNext, 38);
+  } else {
+    $('typed-letter').textContent += '\n';
+    lineIndex++; charIndex = 0;
+    typeTimer = setTimeout(typeNext, 480);
+  }
+}
+
+startTypewriter();
+
+$('btn-finish').addEventListener('click', function(){
+  showScreen('screen-finale');
+});
+
+$('btn-replay').addEventListener('click', function(){
+  showScreen('screen-letter');
+  startTypewriter();
+});
+})();
+</script>
+</body>
+</html>
