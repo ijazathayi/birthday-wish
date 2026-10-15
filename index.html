@@ -237,11 +237,11 @@ function typeNext(){
   var line = lines[lineIndex];
   if (charIndex < line.length){
     $('typed-letter').textContent += line[charIndex++];
-    typeTimer = setTimeout(typeNext, 38);
+    typeTimer = setTimeout(typeNext, 62);
   } else {
     $('typed-letter').textContent += '\n';
     lineIndex++; charIndex = 0;
-    typeTimer = setTimeout(typeNext, 480);
+    typeTimer = setTimeout(typeNext, 800);
   }
 }
 
